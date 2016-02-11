@@ -16,6 +16,47 @@ public class Fraction {
 		return new Fraction(fraction.denominator, fraction.numerator);
 	}
 
+	/**
+	 * Multiply two Fractions
+	 * 
+	 * @param one
+	 *            The first fraction
+	 * @param two
+	 *            The fraction to multiply the first by
+	 * @return A new Fraction that is the product of the others
+	 */
+	public static Fraction multiplyFraction(Fraction one, Fraction two) {
+		// Copy the first fraction
+		Fraction product = one.getCopy();
+
+		// Use instance method of the copy
+		product.multiplyFraction(two);
+
+		// Return the product
+		return product;
+	}
+
+	/**
+	 * Subtracts two fractions
+	 * 
+	 * @param one
+	 *            The first fraction
+	 * @param two
+	 *            The fraction to subtract from the first
+	 * @return A new Fraction that is the difference between the others
+	 */
+	public static Fraction subtractFraction(Fraction one, Fraction two) {
+		// Copy the first Fraction
+		Fraction difference = one.getCopy();
+
+		// Subtract the second from the first
+		difference.subtract(two);
+
+		// Return the difference between the two Fractions
+		return difference;
+	}
+
+	// Instance variables
 	private int numerator, denominator;
 
 	/**
@@ -49,9 +90,14 @@ public class Fraction {
 	 *            The fraction to add
 	 */
 	public void add(Fraction fraction) {
+		// Calculate numerator manually
 		int top = (this.numerator * fraction.denominator)
 				+ (fraction.numerator * this.denominator);
+
+		// Calculate denominator manually
 		int bottom = this.denominator * fraction.denominator;
+
+		// Set numerator and denominator
 		this.numerator = top;
 		this.denominator = bottom;
 	}
@@ -122,6 +168,16 @@ public class Fraction {
 
 		// Return the common factors
 		return commonFactors;
+	}
+
+	/**
+	 * Provides a copy of the current Fraction
+	 * 
+	 * @return A Fraction with same numerator and denominator as caller
+	 */
+	public Fraction getCopy() {
+		// Return the copy
+		return new Fraction(this.numerator, this.denominator);
 	}
 
 	/**
@@ -209,18 +265,6 @@ public class Fraction {
 		this.denominator *= fraction.denominator;
 	}
 
-	public static Fraction multiplyFraction(Fraction one, Fraction two) {
-		Fraction result = one.getCopy();
-		result.multiplyFraction(two);
-		return result;
-	}
-
-	public static Fraction subtractFraction(Fraction one, Fraction two) {
-		Fraction result = one.getCopy();
-		result.subtract(two);
-		return result;
-	}
-
 	/**
 	 * Reduce a fraction
 	 */
@@ -242,16 +286,16 @@ public class Fraction {
 	 *            The fraction to subtract by
 	 */
 	public void subtract(Fraction fraction) {
+		// Calculate numerator
 		int top = (this.numerator * fraction.denominator)
 				- (fraction.numerator * this.denominator);
+
+		// Calculate denominator
 		int bottom = this.denominator * fraction.denominator;
+
+		// Set numerator and denominator
 		this.numerator = top;
 		this.denominator = bottom;
-	}
-
-	public Fraction getCopy() {
-		Fraction fraction = new Fraction(this.numerator, this.denominator);
-		return fraction;
 	}
 
 	/**
@@ -259,7 +303,14 @@ public class Fraction {
 	 */
 	@Override
 	public String toString() {
+		// Reduce the fraction
 		this.reduce();
-		return this.numerator + "/" + this.denominator;
+
+		// Check if the denominator needs to be displayed
+		if (this.denominator == 1) {
+			return String.valueOf(this.numerator);
+		} else {
+			return this.numerator + "/" + this.denominator;
+		}
 	}
 }
