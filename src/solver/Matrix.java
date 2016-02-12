@@ -110,7 +110,7 @@ public class Matrix {
 			Fraction total = new Fraction(0);
 			for (int i = 0; i < detRow.length; i++) {
 				Fraction cofactor = Fraction.multiplyFraction(detRow[i],
-						getCofactor(i));
+						getCofactor(0, i));
 				Matrix smaller = Matrix.getMinorAt(0, i, this);
 				total.add(Fraction.multiplyFraction(cofactor,
 						smaller.getDeterminant()));
@@ -119,8 +119,8 @@ public class Matrix {
 		}
 	}
 
-	private Fraction getCofactor(int index) {
-		if (index % 2 == 0) {
+	private Fraction getCofactor(int iIndex, int jIndex) {
+		if ((iIndex + jIndex) % 2 == 0) {
 			return new Fraction(1);
 		} else {
 			return new Fraction(-1);
@@ -169,16 +169,16 @@ public class Matrix {
 	public Fraction[] getRow(int index) {
 		return this.matrix[index];
 	}
-	
+
 	public Matrix getAdjugate() {
 		Matrix cofactor = new Matrix(this.rows, this.columns);
-		
-		for(int i = 0; i < cofactor.rows; i++) {
-			for(int j = 0; j < cofactor.columns; j++) {
-				//cofactor.setElement(i, j, value);
+
+		for (int i = 0; i < cofactor.rows; i++) {
+			for (int j = 0; j < cofactor.columns; j++) {
+				// cofactor.setElement(i, j, value);
 			}
 		}
-		
+
 		return Matrix.transpose(cofactor);
 	}
 
