@@ -2,7 +2,20 @@ package test;
 
 import solver.Matrix;
 
+/**
+ * A class for testing aspects of the MatrixSolver and supporting classes
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class ModuleTester {
+
+	/**
+	 * Main testing method
+	 * 
+	 * @param args
+	 *            Command line arguments, unsupported
+	 */
 	public static void main(String[] args) {
 		// int[][] a = { { 1, 2 }, { 3, 4 } };
 		// int[][] a = { { 10, 4, -1 }, { -1, 5, 4 }, { 5, -9, -6 } };
@@ -16,5 +29,3 @@ public class ModuleTester {
 		System.out.println(m.findInverse());
 	}
 }
-
-// TODO Wednesday February 17 noon, 448 front street south-east

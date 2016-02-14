@@ -2,6 +2,12 @@ package solver;
 
 import java.util.ArrayList;
 
+/**
+ * A class for representing and manipulating fractions
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class Fraction {
 
 	/**

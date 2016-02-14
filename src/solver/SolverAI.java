@@ -1,5 +1,11 @@
 package solver;
 
+/**
+ * A class for solving Matrices, autonomously
+ * 
+ * @author Inderpreet
+ *
+ */
 public class SolverAI {
 
 	private Matrix matrix, identity;

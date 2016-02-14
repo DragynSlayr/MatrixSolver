@@ -2,9 +2,42 @@ package solver;
 
 import java.util.Scanner;
 
+/**
+ * A class that acts a user interface for the other classes
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class MatrixSolver {
 
 	private static Scanner keyb = new Scanner(System.in);
+
+	/**
+	 * Get the matrix from the user
+	 * 
+	 * @param columns
+	 *            The number of columns of the matrix
+	 * @param rows
+	 *            The number of rows of the matrix
+	 * @return A new matrix from the user's input
+	 */
+	private static Matrix buildMatrix(int columns, int rows) {
+		// Allocate space for a 2d array
+		int[][] userMatrix = new int[rows][columns];
+		for (int i = 0; i < rows; i++) {
+			// Get a row at a time from the user, trim is and split at spaces
+			System.out.printf("Enter %d elements for row %d: ", columns, i + 1);
+			String[] elements = keyb.nextLine().trim().split(" ");
+
+			// Iterate through entered row and add each element to the array
+			for (int j = 0; j < columns; j++) {
+				userMatrix[i][j] = Integer.parseInt(elements[j]);
+			}
+		}
+
+		// Return a matrix created using the 2d array
+		return new Matrix(userMatrix);
+	}
 
 	/**
 	 * Handles the creation and manipulation of a matrix Using a simple user
@@ -50,33 +83,6 @@ public class MatrixSolver {
 
 		// Program ends here, close scanner
 		keyb.close();
-	}
-
-	/**
-	 * Get the matrix from the user
-	 * 
-	 * @param columns
-	 *            The number of columns of the matrix
-	 * @param rows
-	 *            The number of rows of the matrix
-	 * @return A new matrix from the user's input
-	 */
-	private static Matrix buildMatrix(int columns, int rows) {
-		// Allocate space for a 2d array
-		int[][] userMatrix = new int[rows][columns];
-		for (int i = 0; i < rows; i++) {
-			// Get a row at a time from the user, trim is and split at spaces
-			System.out.printf("Enter %d elements for row %d: ", columns, i + 1);
-			String[] elements = keyb.nextLine().trim().split(" ");
-
-			// Iterate through entered row and add each element to the array
-			for (int j = 0; j < columns; j++) {
-				userMatrix[i][j] = Integer.parseInt(elements[j]);
-			}
-		}
-
-		// Return a matrix created using the 2d array
-		return new Matrix(userMatrix);
 	}
 
 	/**
