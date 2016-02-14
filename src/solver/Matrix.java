@@ -230,6 +230,36 @@ public class Matrix {
 	}
 
 	/**
+	 * Gets the column at an index
+	 * 
+	 * @param columnIndex
+	 *            The index of the column
+	 * @return The column at the index
+	 */
+	public Fraction[] getColumn(int columnIndex) {
+		// Create an array for the column
+		Fraction[] column = new Fraction[this.rows];
+
+		// Traverse the rows
+		for (int i = 0; i < this.rows; i++) {
+			// Add the element at the index to the column array
+			column[i] = this.getElement(i, columnIndex);
+		}
+
+		// Return the column
+		return column;
+	}
+
+	/**
+	 * Get the number of columns in the matrix
+	 * 
+	 * @return The columns in the matrix
+	 */
+	public int getColumns() {
+		return this.columns;
+	}
+
+	/**
 	 * Gets a matrix filled with zeroes
 	 * 
 	 * @return A 2d array of zeroes
@@ -338,6 +368,15 @@ public class Matrix {
 	 */
 	public Fraction[] getRow(int row) {
 		return this.matrix[row];
+	}
+
+	/**
+	 * Get the number of rows in the matrix
+	 * 
+	 * @return The rows in the matrix
+	 */
+	public int getRows() {
+		return this.rows;
 	}
 
 	/**
