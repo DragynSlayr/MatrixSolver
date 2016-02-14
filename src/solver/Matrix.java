@@ -2,28 +2,6 @@ package solver;
 
 public class Matrix {
 
-	/**
-	 * Convert an 2d integer array to 2d Fraction array
-	 * 
-	 * @param matrix
-	 *            The 2d integer array to convert
-	 * @return A 2d Fraction array
-	 */
-	public static Fraction[][] convertToFraction(int[][] matrix) {
-		// 2d Fraction array of same size as matrix
-		Fraction[][] converted = new Fraction[matrix.length][matrix[0].length];
-
-		// Traverse matrix and convert to Fraction
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[0].length; j++) {
-				converted[i][j] = new Fraction(matrix[i][j]);
-			}
-		}
-
-		// Return converted 2d Fraction array
-		return converted;
-	}
-
 	private Fraction[][] matrix;
 	private int columns, rows;
 
@@ -66,7 +44,7 @@ public class Matrix {
 	 */
 	public Matrix(int[][] matrix) {
 		// Call main constructor
-		this(convertToFraction(matrix));
+		this(Fraction.convertToFraction(matrix));
 	}
 
 	/**
@@ -170,36 +148,47 @@ public class Matrix {
 		return this.matrix[index];
 	}
 
-	public Matrix getAdjugate() {
-		Matrix cofactor = new Matrix(this.rows, this.columns);
+	public Matrix divide(Fraction fraction) {
+		return this.multiply(Fraction.getInverse(fraction));
+	}
 
-		for (int i = 0; i < cofactor.rows; i++) {
-			for (int j = 0; j < cofactor.columns; j++) {
-				// cofactor.setElement(i, j, value);
+	public Matrix findInverse() {
+		Matrix adjugate = this.getAdjugate();
+		Fraction determinant = this.getDeterminant();
+		return adjugate.divide(determinant);
+	}
+
+	public Matrix multiply(Fraction fraction) {
+		Matrix multiplied = new Matrix(this.rows, this.columns);
+
+		for (int i = 0; i < multiplied.rows; i++) {
+			for (int j = 0; j < multiplied.columns; j++) {
+				Fraction value = Fraction.multiplyFraction(fraction,
+						this.getElement(i, j));
+				multiplied.setElement(i, j, value);
 			}
 		}
 
-		return Matrix.transpose(cofactor);
+		return multiplied;
 	}
 
-	/**
-	 * Convert an integer array to a Fraction array
-	 * 
-	 * @param row
-	 *            The array to convert
-	 * @return The Fraction representation of that row
-	 */
-	public Fraction[] convertRowToFraction(int[] row) {
-		// Fraction array of same size as row
-		Fraction[] converted = new Fraction[row.length];
+	public Matrix getAdjugate() {
+		Matrix cofactorMatrix = new Matrix(this.rows, this.columns);
 
-		// Traverse row and convert elements to Fraction
-		for (int i = 0; i < row.length; i++) {
-			converted[i] = new Fraction(row[i]);
+		for (int i = 0; i < cofactorMatrix.rows; i++) {
+			for (int j = 0; j < cofactorMatrix.columns; j++) {
+				Matrix minor = Matrix.getMinorAt(i, j, this);
+
+				Fraction minorDeterminant = minor.getDeterminant();
+				Fraction cofactor = minor.getCofactor(i, j);
+				Fraction value = Fraction.multiplyFraction(minorDeterminant,
+						cofactor);
+
+				cofactorMatrix.setElement(i, j, value);
+			}
 		}
 
-		// Return converted array
-		return converted;
+		return Matrix.transpose(cofactorMatrix);
 	}
 
 	/**
@@ -371,7 +360,7 @@ public class Matrix {
 	 *            The array to assign
 	 */
 	public void setMatrix(int[][] matrix) {
-		setMatrix(convertToFraction(matrix));
+		setMatrix(Fraction.convertToFraction(matrix));
 	}
 
 	/**
@@ -395,7 +384,7 @@ public class Matrix {
 	 *            The new row
 	 */
 	public void setRow(int rowIndex, int[] row) {
-		setRow(rowIndex, convertRowToFraction(row));
+		setRow(rowIndex, Fraction.convertRowToFraction(row));
 	}
 
 	/**
