@@ -5,6 +5,48 @@ import java.util.ArrayList;
 public class Fraction {
 
 	/**
+	 * Convert an integer array to a Fraction array
+	 * 
+	 * @param row
+	 *            The array to convert
+	 * @return The Fraction representation of that row
+	 */
+	public static Fraction[] convertRowToFraction(int[] row) {
+		// Fraction array of same size as row
+		Fraction[] converted = new Fraction[row.length];
+
+		// Traverse row and convert elements to Fraction
+		for (int i = 0; i < row.length; i++) {
+			converted[i] = new Fraction(row[i]);
+		}
+
+		// Return converted array
+		return converted;
+	}
+
+	/**
+	 * Convert an 2d integer array to 2d Fraction array
+	 * 
+	 * @param iArray
+	 *            The 2d integer array to convert
+	 * @return A 2d Fraction array
+	 */
+	public static Fraction[][] convertToFraction(int[][] iArray) {
+		// 2d Fraction array of same size as matrix
+		Fraction[][] converted = new Fraction[iArray.length][iArray[0].length];
+
+		// Traverse matrix and convert to Fraction
+		for (int i = 0; i < iArray.length; i++) {
+			for (int j = 0; j < iArray[0].length; j++) {
+				converted[i][j] = new Fraction(iArray[i][j]);
+			}
+		}
+
+		// Return converted 2d Fraction array
+		return converted;
+	}
+
+	/**
 	 * Get the inverse of a fraction
 	 * 
 	 * @param fraction
@@ -306,8 +348,13 @@ public class Fraction {
 		// Reduce the fraction
 		this.reduce();
 
+		if (this.denominator < 0) {
+			this.denominator *= -1;
+			this.numerator *= -1;
+		}
+
 		// Check if the denominator needs to be displayed
-		if (this.denominator == 1) {
+		if (this.denominator == 1 || this.numerator == 0) {
 			return String.valueOf(this.numerator);
 		} else {
 			return this.numerator + "/" + this.denominator;
