@@ -9,6 +9,35 @@ package solver;
 public class Matrix {
 
 	/**
+	 * Adds two matrices together
+	 * 
+	 * @param one
+	 *            The first Matrix
+	 * @param two
+	 *            The Matrix to add to the first
+	 * @return A Matrix that represents one + two
+	 */
+	public static Matrix addMatrices(Matrix one, Matrix two) {
+		// Create a new Matrix to hold the sum
+		Matrix sum = new Matrix(one.rows, one.columns);
+
+		// Traverse the matrices
+		for (int i = 0; i < one.rows; i++) {
+			for (int j = 0; j < one.columns; j++) {
+				// Add the values at the current index for both matrices
+				Fraction value = Fraction.addFraction(one.getElement(i, j),
+						two.getElement(i, j));
+
+				// Place the sum in the new Matrix
+				sum.setElement(i, j, value);
+			}
+		}
+
+		// Return the sum of the matrices
+		return sum;
+	}
+
+	/**
 	 * Get the minor of a matrix at an element
 	 * 
 	 * @param row
@@ -49,6 +78,20 @@ public class Matrix {
 
 		// Return the minor
 		return new Matrix(minorArray);
+	}
+
+	/**
+	 * Finds the difference between two matrices
+	 * 
+	 * @param one
+	 *            The first Matrix
+	 * @param two
+	 *            The Matrix to subtract from the first
+	 * @return A Matrix that represents one - two
+	 */
+	public static Matrix subtractMatrices(Matrix one, Matrix two) {
+		// Subtracting is the same as adding the negation of one to the other
+		return Matrix.addMatrices(one, two.multiply(new Fraction(-1)));
 	}
 
 	/**
