@@ -127,6 +127,31 @@ public class Matrix {
 	}
 
 	/**
+	 * Replaces a column of the Matrix with a Fraction array
+	 * 
+	 * @param m
+	 *            The Matrix to replace a row of
+	 * @param column
+	 *            The column to use for replacement
+	 * @param columnIndex
+	 *            The index to place the column at
+	 * @return A Matrix that has column: columnIndex replaced with column
+	 */
+	public static Matrix replaceColumn(Matrix m, Matrix column, int columnIndex) {
+		// Create a copy of the Matrix
+		Matrix replaced = m.getCopy();
+
+		// /Traverse the new Matrix
+		for (int i = 0; i < m.rows; i++) {
+			// Replace each element
+			replaced.setElement(i, columnIndex, column.getElement(i, 0));
+		}
+
+		// Return the new matrix
+		return replaced;
+	}
+
+	/**
 	 * Finds the difference between two matrices
 	 * 
 	 * @param one
@@ -371,6 +396,27 @@ public class Matrix {
 	 */
 	public int getColumns() {
 		return this.columns;
+	}
+
+	/**
+	 * Creates an unlinked copy of this matrix
+	 * 
+	 * @return The copy of the Matrix
+	 */
+	public Matrix getCopy() {
+		// Create a Matrix of same size as this
+		Matrix copy = new Matrix(this.rows, this.columns);
+
+		// Traverse this Matrix
+		for (int i = 0; i < this.rows; i++) {
+			for (int j = 0; j < this.columns; j++) {
+				// Copy the elements of this Matrix to the copy Matrix
+				copy.setElement(i, j, this.getElement(i, j));
+			}
+		}
+
+		// Return the copy
+		return copy;
 	}
 
 	/**
