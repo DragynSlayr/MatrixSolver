@@ -192,6 +192,26 @@ public class Fraction {
 		this.multiplyFraction(inverted);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// Check if the object is a Fraction
+		if (obj instanceof Fraction) {
+			// Cast object to Fraction
+			Fraction f = (Fraction) obj;
+
+			// Compare numerators and denominators
+			boolean sameNumerators = (this.numerator == f.numerator);
+			boolean sameDenominators = (this.denominator == f.denominator);
+
+			// Return true if the numerator and denominator of the object match
+			// this, false otherwise
+			return (sameNumerators && sameDenominators);
+		} else {
+			// Return false when the object is not a Fraction
+			return false;
+		}
+	}
+
 	/**
 	 * Get the factors common to two ArrayLists
 	 * 
