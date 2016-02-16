@@ -117,6 +117,7 @@ public class Matrix {
 	}
 
 	private Fraction[][] matrix;
+
 	private int columns, rows;
 
 	/**
@@ -201,6 +202,30 @@ public class Matrix {
 		for (int i = 0; i < this.columns; i++) {
 			// Divide each element
 			this.matrix[rowIndex][i].divide(divisor);
+		}
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// Check if the object is a Matrix
+		if (obj instanceof Matrix) {
+			// Cast object to Matrix
+			Matrix comparator = (Matrix) obj;
+
+			// Check that the rows and columns are equal in size
+			boolean rowsEqual = (this.rows == comparator.rows);
+			boolean columnsEqual = (this.columns == comparator.columns);
+
+			if (rowsEqual && columnsEqual) {
+				// Return the result of checking each element for equality
+				return isSameElements(comparator);
+			} else {
+				// Return false if the object is not the same size as the Matrix
+				return false;
+			}
+		} else {
+			// Return false if the object is not a Matrix
+			return false;
 		}
 	}
 
@@ -436,6 +461,33 @@ public class Matrix {
 
 		// Return the difference of the products
 		return Fraction.subtractFraction(ad, bc);
+	}
+
+	/**
+	 * Checks if the elements of this Matrix are identical to another
+	 * 
+	 * @param m
+	 *            The Matrix to compare with
+	 * @return true if the elements are the same, false otherwise
+	 */
+	private boolean isSameElements(Matrix m) {
+		// Traverse this matrix
+		for (int i = 0; i < this.rows; i++) {
+			for (int j = 0; j < this.columns; j++) {
+				// Check if the elements ar the same
+				boolean isSameElement = this.getElement(i, j).equals(
+						m.getElement(i, j));
+
+				if (!isSameElement) {
+					// Return false if the elements differ
+					return false;
+				}
+			}
+		}
+
+		// Return true when all elements have been checked and none have
+		// differed
+		return true;
 	}
 
 	/**
