@@ -18,16 +18,21 @@ public class ModuleTester {
 	 *            Command line arguments, unsupported
 	 */
 	public static void main(String[] args) {
-		int[][] a = { { 3, 4 }, { 9, 1 } };
-		int[][] b = { { 7 }, { 2 } };
+		int[][] a = { { 1, 1, 1 }, { 0, 2, 5 }, { 2, 5, -1 } };
+		int[][] b = { { 6 }, { -4 }, { 27 } };
 
 		Matrix aMatrix = new Matrix(a);
 		Matrix bMatrix = new Matrix(b);
 
+		System.out.println(aMatrix);
+		System.out.println(bMatrix);
+
+		System.out.println("Det: " + aMatrix.getDeterminant() + "\n");
+
 		Fraction[] solutions = Matrix.findSolution(aMatrix, bMatrix);
 
 		for (int i = 0; i < solutions.length; i++) {
-			System.out.printf("X%d: %s\n", i, solutions[i]);
+			System.out.printf("X%d: %s\n", (i + 1), solutions[i]);
 		}
 	}
 }
