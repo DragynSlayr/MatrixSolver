@@ -38,6 +38,39 @@ public class Matrix {
 	}
 
 	/**
+	 * Find the solution to a Matrix, provided with solutions
+	 * 
+	 * @param matrix
+	 *            The Matrix to solve
+	 * @param solution
+	 *            The solution Matrix
+	 * @return A Fraction array of solutions
+	 */
+	public static Fraction[] findSolution(Matrix matrix, Matrix solution) {
+		// Create an array to hold found solutions
+		Fraction[] solutions = new Fraction[matrix.columns];
+
+		// Find the determinant of the matrix
+		Fraction determinant = matrix.getDeterminant();
+
+		// Traverse columns of the matrix
+		for (int i = 0; i < matrix.columns; i++) {
+			// Transpose the matrix with the solution matrix
+			Matrix transposition = Matrix.replaceColumn(matrix, solution, i);
+
+			// Store the quotient of the transposed determinant
+			Fraction transposedDeterminant = transposition.getDeterminant();
+
+			// Store the quotient of the two determinants
+			solutions[i] = Fraction.divideFraction(transposedDeterminant,
+					determinant);
+		}
+
+		// Return the solutions
+		return solutions;
+	}
+
+	/**
 	 * Get the minor of a matrix at an element
 	 * 
 	 * @param row
