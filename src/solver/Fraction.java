@@ -11,6 +11,26 @@ import java.util.ArrayList;
 public class Fraction {
 
 	/**
+	 * Adds two fractions
+	 * 
+	 * @param one
+	 *            The first fraction
+	 * @param two
+	 *            The fraction to add to the first
+	 * @return A new Fraction that is the sum of the others
+	 */
+	public static Fraction addFraction(Fraction one, Fraction two) {
+		// Copy the first Fraction
+		Fraction difference = one.getCopy();
+
+		// Add the second to the first
+		difference.add(two);
+
+		// Return the sum of the two Fractions
+		return difference;
+	}
+
+	/**
 	 * Convert an integer array to a Fraction array
 	 * 
 	 * @param row
