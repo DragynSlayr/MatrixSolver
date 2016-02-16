@@ -1,5 +1,6 @@
 package test;
 
+import solver.Fraction;
 import solver.Matrix;
 
 /**
@@ -17,17 +18,16 @@ public class ModuleTester {
 	 *            Command line arguments, unsupported
 	 */
 	public static void main(String[] args) {
-		int[][] a = { { 1, 2, 3 }, { 4, 5, 6 } };
-		int[][] b = { { 1 }, { 2 } };
+		int[][] a = { { 3, 4 }, { 9, 1 } };
+		int[][] b = { { 7 }, { 2 } };
 
 		Matrix aMatrix = new Matrix(a);
 		Matrix bMatrix = new Matrix(b);
 
-		System.out.println(aMatrix);
-		System.out.println(bMatrix);
+		Fraction[] solutions = Matrix.findSolution(aMatrix, bMatrix);
 
-		for (int i = 0; i < aMatrix.getColumns(); i++) {
-			System.out.println(Matrix.replaceColumn(aMatrix, bMatrix, i));
+		for (int i = 0; i < solutions.length; i++) {
+			System.out.printf("X%d: %s\n", i, solutions[i]);
 		}
 	}
 }
