@@ -73,6 +73,26 @@ public class Fraction {
 	}
 
 	/**
+	 * Divide two Fractions
+	 * 
+	 * @param one
+	 *            The first fraction
+	 * @param two
+	 *            The fraction to divide the first by
+	 * @return A new Fraction that is the quotient of the others
+	 */
+	public static Fraction divideFraction(Fraction one, Fraction two) {
+		// Copy the first fraction
+		Fraction product = one.getCopy();
+
+		// Use instance method of the copy
+		product.multiplyFraction(Fraction.getInverse(two));
+
+		// Return the product
+		return product;
+	}
+
+	/**
 	 * Get the inverse of a fraction
 	 * 
 	 * @param fraction
