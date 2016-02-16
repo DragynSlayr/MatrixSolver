@@ -17,16 +17,24 @@ public class ModuleTester {
 	 *            Command line arguments, unsupported
 	 */
 	public static void main(String[] args) {
-		int[][] a = { { 1, 2 }, { 3, 4 } };
-		int[][] b = { { 1, 2 }, { 3, 5 } };
-		// int[][] a = { { 10, 4, -1 }, { -1, 5, 4 }, { 5, -9, -6 } };
-		// int[][] a = { { -9, 1, 9, 8 }, { 0, 6, 2, 1 }, { 0, -30, -4, -6 },
-		// { 0, -24, 4, -13 } };
+		int[][] a = { { 1, 2, 3 }, { 4, 5, 6 } };
+		int[][] b = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+		int[][] c = { { 10, 4, -1 }, { -1, 5, 4 }, { 5, -9, -6 } };
+		int[][] d = { { -9, 1, 9, 8 }, { 0, 6, 2, 1 }, { 0, -30, -4, -6 } };
 
-		Matrix m = new Matrix(a);
-		Matrix n = new Matrix(b);
+		Matrix aMatrix = new Matrix(a);
+		Matrix bMatrix = new Matrix(b);
+		Matrix cMatrix = new Matrix(c);
+		Matrix dMatrix = new Matrix(d);
 
-		System.out.println(m.equals(n));
-		System.out.println(n.equals(m));
+		System.out.println(aMatrix);
+		System.out.println(bMatrix);
+		System.out.println(cMatrix);
+		System.out.println(dMatrix);
+
+		System.out.println(Matrix.multiplyMatrices(aMatrix, bMatrix));
+		System.out.println(Matrix.multiplyMatrices(bMatrix, aMatrix));
+		System.out.println(Matrix.multiplyMatrices(cMatrix, dMatrix));
+		System.out.println(Matrix.multiplyMatrices(dMatrix, cMatrix));
 	}
 }
