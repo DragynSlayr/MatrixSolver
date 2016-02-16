@@ -81,6 +81,52 @@ public class Matrix {
 	}
 
 	/**
+	 * Multiply two matrices using dot product
+	 * 
+	 * @param one
+	 *            The first Matrix
+	 * @param two
+	 *            The Matrix to multiply the first by
+	 * @return The product of the matrices: one * two
+	 */
+	public static Matrix multiplyMatrices(Matrix one, Matrix two) {
+		// Check that the matrices can be multiplied
+		if (one.columns == two.rows) {
+			// Create Matrix to represent product
+			Matrix product = new Matrix(one.rows, two.columns);
+
+			// Traverse product Matrix
+			for (int i = 0; i < product.rows; i++) {
+				for (int j = 0; j < product.columns; j++) {
+					// Perform dot product on row i of one and column j of two
+					Fraction[] rowI = one.getRow(i);
+					Fraction[] columnJ = two.getColumn(j);
+
+					// Create Fraction to hold the sum of the products
+					Fraction total = new Fraction(0);
+
+					// Traverse selected row and column simultaneously
+					for (int k = 0; k < rowI.length; k++) {
+						// Add sum to total
+						total.add(Fraction
+								.multiplyFraction(rowI[k], columnJ[k]));
+					}
+
+					// Set the value of the index
+					product.setElement(i, j, total);
+				}
+			}
+
+			// Return product Matrix
+			return product;
+		} else {
+			// Return a zero matrix
+			int[][] noValue = { { 0 } };
+			return new Matrix(noValue);
+		}
+	}
+
+	/**
 	 * Finds the difference between two matrices
 	 * 
 	 * @param one
