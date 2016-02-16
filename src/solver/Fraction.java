@@ -422,6 +422,8 @@ public class Fraction {
 		// Check if the denominator needs to be displayed
 		if (this.denominator == 1 || this.numerator == 0) {
 			return String.valueOf(this.numerator);
+		} else if (this.denominator == 0) {
+			return String.valueOf(this.denominator);
 		} else {
 			return this.numerator + "/" + this.denominator;
 		}
