@@ -11,7 +11,7 @@ public class Vector {
 	 *            The Vector to add to the first
 	 * @return A Vector that represents one + two
 	 */
-	public static Vector addMatrices(Vector one, Vector two) {
+	public static Vector addVectors(Vector one, Vector two) {
 		// Create a new Vector to hold the sum
 		Vector sum = new Vector(one.rows);
 
@@ -38,9 +38,9 @@ public class Vector {
 	 *            The Vector to subtract from the first
 	 * @return A Matrix that represents one - two
 	 */
-	public static Vector subtractMatrices(Vector one, Vector two) {
+	public static Vector subtractVectors(Vector one, Vector two) {
 		// Subtracting is the same as adding the negation of one to the other
-		return Vector.addMatrices(one, two.multiply(new Fraction(-1)));
+		return Vector.addVectors(one, two.multiply(new Fraction(-1)));
 	}
 
 	private Fraction[] vector;
