@@ -76,6 +76,17 @@ public class Vector {
 	}
 
 	/**
+	 * Creates a new Vector from a 1d array
+	 * 
+	 * @param vector
+	 *            A 1d array of integers, this will represent the vector
+	 */
+	public Vector(int[] vector) {
+		// Call main constructor
+		this(Fraction.convertRowToFraction(vector));
+	}
+
+	/**
 	 * Divide the Vector by a Fraction
 	 * 
 	 * @param fraction
