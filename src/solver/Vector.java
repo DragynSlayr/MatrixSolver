@@ -28,6 +28,7 @@ public class Vector {
 		// Return the sum of the vectors
 		return sum;
 	}
+
 	/**
 	 * Finds the difference between two vectors
 	 * 
