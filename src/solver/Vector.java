@@ -1,5 +1,11 @@
 package solver;
 
+/**
+ * A class for representing and manipulating Vectors
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class Vector {
 
 	/**
