@@ -1,7 +1,7 @@
 package test;
 
+import solver.Exponential;
 import solver.Fraction;
-import solver.Vector;
 
 /**
  * A class for testing aspects of the MatrixSolver and supporting classes
@@ -18,22 +18,19 @@ public class ModuleTester {
 	 *            Command line arguments, unsupported
 	 */
 	public static void main(String[] args) {
-		int[] a = { 2, -2, -5 };
-		int[] b = { 2, 5, -4 };
+		Fraction a = new Fraction(2);
+		Fraction b = new Fraction(3);
+		Fraction c = new Fraction(1, 4);
+		Fraction d = new Fraction(5, 2);
 
-		Vector aVector = new Vector(a);
-		Vector bVector = new Vector(b);
+		Exponential ab = new Exponential(a, b);
+		Exponential bc = new Exponential(b, c);
+		Exponential cd = new Exponential(c, d);
+		Exponential da = new Exponential(d, a);
 
-		System.out.println(aVector);
-		System.out.println(bVector);
-
-		System.out.println(Vector.addVectors(aVector, bVector));
-		System.out.println(Vector.addVectors(bVector, aVector));
-
-		System.out.println(Vector.subtractVectors(aVector, bVector));
-		System.out.println(Vector.subtractVectors(bVector, aVector));
-
-		System.out.println(aVector.divide(new Fraction(-2)));
-		System.out.println(bVector.multiply(new Fraction(5)));
+		System.out.println(ab);
+		System.out.println(bc);
+		System.out.println(cd);
+		System.out.println(da);
 	}
 }
