@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Inderpreet Dhillon
  *
  */
-public class Fraction {
+public class Fraction implements Comparable<Fraction> {
 
 	/**
 	 * Adds two fractions
@@ -188,6 +188,28 @@ public class Fraction {
 		// Set numerator and denominator
 		this.numerator = top;
 		this.denominator = bottom;
+	}
+
+	/**
+	 * Compares a Fraction to this. A positive integer means this is larger,
+	 * negative means this is smaller, zero means they are the same
+	 */
+	@Override
+	public int compareTo(Fraction fraction) {
+		// Make a copy of this Fraction
+		Fraction difference = this.getCopy();
+
+		// Subtract the other Fraction from the copy
+		difference.subtract(fraction);
+
+		// Get the string representation of the difference
+		String differenceString = difference.toString();
+
+		// Get the numerator from the string
+		String numerator = differenceString.split("/")[0];
+
+		// Return the Integer representation of the numerator
+		return Integer.parseInt(numerator);
 	}
 
 	/**
