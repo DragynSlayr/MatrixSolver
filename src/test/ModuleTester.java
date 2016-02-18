@@ -1,7 +1,7 @@
 package test;
 
-import solver.Exponential;
-import solver.Fraction;
+import solver.Matrix;
+import solver.SolverAI;
 
 /**
  * A class for testing aspects of the MatrixSolver and supporting classes
@@ -18,19 +18,16 @@ public class ModuleTester {
 	 *            Command line arguments, unsupported
 	 */
 	public static void main(String[] args) {
-		Fraction a = new Fraction(2);
-		Fraction b = new Fraction(3);
-		Fraction c = new Fraction(1, 4);
-		Fraction d = new Fraction(5, 2);
 
-		Exponential ab = new Exponential(a, b);
-		Exponential bc = new Exponential(b, c);
-		Exponential cd = new Exponential(c, d);
-		Exponential da = new Exponential(d, a);
+		int[][] a = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 },
+				{ 13, 14, 15, 16 } };
+		// int[][] a = { { 3, 2, 1 }, { 9, 3, 6 }, { 1, 2, 4 } };
 
-		System.out.println(ab);
-		System.out.println(bc);
-		System.out.println(cd);
-		System.out.println(da);
+		Matrix aMatrix = new Matrix(a);
+		System.out.println(aMatrix);
+
+		SolverAI ai = new SolverAI(aMatrix);
+		System.out.println(ai.solve());
+
 	}
 }
