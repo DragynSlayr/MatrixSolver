@@ -86,6 +86,12 @@ public class Exponential {
 	 * Return a String representation of the Exponential
 	 */
 	public String toString() {
+		// Check if the power is negative
+		if (this.power.compareTo(new Fraction(0)) < 0) {
+			this.base = Fraction.getInverse(this.base);
+			this.power.multiply(-1);
+		}
+
 		// Get the string representation of both base and power
 		String baseString = this.base.toString();
 		String powerString = this.power.toString();
