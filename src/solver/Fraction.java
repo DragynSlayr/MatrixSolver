@@ -172,6 +172,35 @@ public class Fraction implements Comparable<Fraction> {
 	}
 
 	/**
+	 * Create a Fraction using a String
+	 * 
+	 * @param fraction
+	 *            The String representing a Fraction
+	 */
+	public Fraction(String fraction) {
+		// Split the string into two parts
+		String[] split = fraction.split("/");
+
+		// Assign default values for the Fraction
+		int numerator = 1, denominator = 1;
+
+		// Find values from the string based on separated array length
+		switch (split.length) {
+		case 2:
+			denominator = Integer.parseInt(split[1]);
+		case 1:
+			numerator = Integer.parseInt(split[0]);
+			break;
+		default:
+			break;
+		}
+
+		// Set the objects values
+		this.numerator = numerator;
+		this.denominator = denominator;
+	}
+
+	/**
 	 * Add a fraction to this one
 	 * 
 	 * @param fraction
