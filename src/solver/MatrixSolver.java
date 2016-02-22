@@ -10,6 +10,7 @@ import java.util.Scanner;
  */
 public class MatrixSolver {
 
+	// Create a Scanner object for keyboard input
 	private static Scanner keyb = new Scanner(System.in);
 
 	/**
@@ -23,15 +24,18 @@ public class MatrixSolver {
 	 */
 	private static Matrix buildMatrix(int columns, int rows) {
 		// Allocate space for a 2d array
-		int[][] userMatrix = new int[rows][columns];
+		Fraction[][] userMatrix = new Fraction[rows][columns];
+
+		// Get all the rows from the user
 		for (int i = 0; i < rows; i++) {
-			// Get a row at a time from the user, trim is and split at spaces
-			System.out.printf("Enter %d elements for row %d: ", columns, i + 1);
+			// Get a row at a time from the user, trim it and split at spaces
+			System.out.printf("Enter %d element%s for row %d: ", columns,
+					((columns > 1) ? "s" : ""), i + 1);
 			String[] elements = keyb.nextLine().trim().split(" ");
 
 			// Iterate through entered row and add each element to the array
 			for (int j = 0; j < columns; j++) {
-				userMatrix[i][j] = Integer.parseInt(elements[j]);
+				userMatrix[i][j] = new Fraction(elements[j]);
 			}
 		}
 
@@ -72,8 +76,27 @@ public class MatrixSolver {
 			userGuidedSolve(userMatrix);
 			break;
 		case 2:
-			SolverAI ai = new SolverAI(userMatrix);
-			ai.exampleSolve();
+			if (userMatrix.isSquare()) {
+				// Get the solution vector from the user
+				System.out.println("Enter solutions vector");
+				Matrix solutionMatrix = buildMatrix(1, userMatrix.getRows());
+
+				// Find the solutions using the Matrix and the solutions matrix
+				Fraction[] solutions = Matrix.findSolution(userMatrix,
+						solutionMatrix);
+
+				// Traverse the solutions
+				for (int i = 0; i < solutions.length; i++) {
+					// Print each solution
+					System.out.printf("X%d = %s\n", i + 1, solutions[i]);
+				}
+			} else {
+				// Create a SolverAI object
+				SolverAI ai = new SolverAI(userMatrix);
+
+				// Print an attempt at solving
+				System.out.println(ai.solve());
+			}
 			break;
 		default:
 			System.out.println("Invalid choice!");
