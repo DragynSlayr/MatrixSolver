@@ -1,5 +1,11 @@
 package solver;
 
+/**
+ * A class for representing and manipulating exponential numbers
+ * 
+ * @author Inderpreet Dhillon
+ *
+ */
 public class Exponential {
 
 	private Fraction base, power;
