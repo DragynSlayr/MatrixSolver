@@ -1,7 +1,7 @@
 package test;
 
+import solver.Fraction;
 import solver.Matrix;
-import solver.SolverAI;
 
 /**
  * A class for testing aspects of the MatrixSolver and supporting classes
@@ -19,15 +19,24 @@ public class ModuleTester {
 	 */
 	public static void main(String[] args) {
 
-		int[][] a = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 },
-				{ 13, 14, 15, 16 } };
+		// int[][] a = { { 3, 9, 2 }, { 1, 1, 0 }, { 2, 1, -1 } };
+		Fraction[][] a = {
+				{ new Fraction(1, 2), new Fraction(7, 3), new Fraction(2) },
+				{ new Fraction(0), new Fraction(1), new Fraction(-1) },
+				{ new Fraction(10, 3), new Fraction(42), new Fraction(-3) } };
+		int[][] b = { { 21 }, { 2 }, { 1 } };
 		// int[][] a = { { 3, 2, 1 }, { 9, 3, 6 }, { 1, 2, 4 } };
 
 		Matrix aMatrix = new Matrix(a);
 		System.out.println(aMatrix);
 
-		SolverAI ai = new SolverAI(aMatrix);
-		System.out.println(ai.solve());
+		Matrix bMatrix = new Matrix(b);
+		System.out.println(bMatrix);
 
+		Fraction[] solutions = Matrix.findSolution(aMatrix, bMatrix);
+
+		for (int i = 0; i < solutions.length; i++) {
+			System.out.printf("X%d: %s\n", i + 1, solutions[i]);
+		}
 	}
 }
