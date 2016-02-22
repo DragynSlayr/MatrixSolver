@@ -122,6 +122,25 @@ public class Vector {
 	}
 
 	/**
+	 * Get the distance of a vector in standard position
+	 * 
+	 * @return The distance of the vectors head from the origin
+	 */
+	public Exponential getDistance() {
+		// A Fraction to hold the sum of the squares of the elements
+		Fraction total = new Fraction(0);
+
+		// Traverse the vector
+		for (Fraction element : this.vector) {
+			// Add the square of the element to the total
+			total.add(Fraction.multiplyFraction(element, element));
+		}
+
+		// Return an Exponential that represents the square root of the total
+		return new Exponential(total, new Fraction(1, 2));
+	}
+
+	/**
 	 * Get an element at the row
 	 * 
 	 * @param row
