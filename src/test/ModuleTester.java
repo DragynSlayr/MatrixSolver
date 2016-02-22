@@ -1,7 +1,6 @@
 package test;
 
-import solver.Exponential;
-import solver.Fraction;
+import solver.Vector;
 
 /**
  * A class for testing aspects of the MatrixSolver and supporting classes
@@ -18,9 +17,9 @@ public class ModuleTester {
 	 *            Command line arguments, unsupported
 	 */
 	public static void main(String[] args) {
-		Exponential exp = new Exponential(new Fraction(1, 2), new Fraction(-1,
-				2));
+		int[] a = { 3, 4, 2, 2 };
+		Vector v = new Vector(a);
 
-		System.out.println(exp);
+		System.out.println(v.getDistance());
 	}
 }
